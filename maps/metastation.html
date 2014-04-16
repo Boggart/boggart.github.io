@@ -7,22 +7,18 @@
 <div id="map" style="width: 800px; height: 600px"></div>
 <script>
 	var map = L.map('map').setView([51.505, -0.09], 5);
-	var baselayer = L.tileLayer('./metastation/baselayer/{z}/{y}/{x}.png', {attribution: '',maxZoom: 5});
+	L.tileLayer('./metastation/baselayer/{z}/{y}/{x}.png', {attribution: '',maxZoom: 5}).addTo(map);
 
 	var atmoslayer = L.tileLayer('./metastation/atmoslayer/{z}/{y}/{x}.png', {attribution: '',maxZoom: 5}),
 		disposallayer = L.tileLayer('./metastation/disposallayer/{z}/{y}/{x}.png', {attribution: '',maxZoom: 5}),
 		powerlayer = L.tileLayer('./metastation/powerlayer/{z}/{y}/{x}.png', {attribution: '',maxZoom: 5});
-
-	var basemaps = {
-		"Station": baselayer
-	};
 
 	var overlayMaps = {
  		"Atmospherics": atmoslayer,
   		"Disposals": disposallayer,
   		"Power": powerlayer
 	};
-	L.control.layers(basemaps, overlayMaps).addTo(map);
+	L.control.layers(null, overlayMaps).addTo(map);
 	map.attributionControl.setPrefix('Metastation');
 </script>
 
