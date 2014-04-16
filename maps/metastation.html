@@ -13,12 +13,16 @@
 		disposallayer = L.tileLayer('./metastation/disposallayer/{z}/{y}/{x}.jpg', {attribution: '',maxZoom: 5}),
 		powerlayer = L.tileLayer('./metastation/powerlayer/{z}/{y}/{x}.jpg', {attribution: '',maxZoom: 5});
 
+	var basemaps = {
+		"Station": baselayer
+	};
+
 	var overlayMaps = {
  		"Atmospherics": atmoslayer,
   		"Disposals": disposallayer,
   		"Power": powerlayer
 	};
-	L.control.layers(baselayer, overlayMaps).addTo(map);
+	L.control.layers(basemaps, overlayMaps).addTo(map);
 	map.attributionControl.setPrefix('Metastation');
 </script>
 
