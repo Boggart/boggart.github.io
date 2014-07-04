@@ -19,7 +19,9 @@
   		"Power": powerlayer
 	};
 	L.control.layers(null, overlayMaps).addTo(map);
-	map.attributionControl.setPrefix('Metastation, images provided by Uncle Sporky');
+	map.attributionControl.setPrefix('Metastation, images provided by Uncle Sporky. <url src="http://leafletjs.com">Leaflet.js</url>');
+	map.setMaxBounds(map.getBounds());
+	
 </script>
 
 </body>
