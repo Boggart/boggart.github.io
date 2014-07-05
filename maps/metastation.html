@@ -7,13 +7,7 @@
 <div id="map" style="width: 800px; height: 600px"></div>
 <script>
 
-	var map = L.map('map', {crs: L.CRS.Simple, maxZoom: 5, center: [0, 0], zoom: 5});
-
-	var southWest = map.unproject([0, 5632], 5);
-	var northEast = map.unproject([6656, 0], 5);
-	var bounds = new L.LatLngBounds(southWest, northEast);
-	map.setMaxBounds(bounds);
-	map.setView(bounds.getCenter(), map.getMaxZoom());
+	var map = L.map('map', {maxZoom: 5, center: [51.505, -0.09], zoom: 5});
 	
 	L.tileLayer('./metastation/baselayer/{z}/{y}/{x}.png', {attribution: '', noWrap: true}).addTo(map);
 
