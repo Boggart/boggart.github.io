@@ -2,7 +2,7 @@
 	<code>
 		<script src="jquery.js"></script>
 		<script src="mediaelement-and-player.min.js"></script>
-		<link rel="stylesheet" href="mediaelementplayer.css" />
+		<link rel="stylesheet" href="mediaelementplayer.min.css" />
 	</code>
 </head>
 
@@ -13,9 +13,7 @@
 	<input id="playurl" type="text" size=100> <input type="button" value="Play url" onClick="playit()">
 	<audio id="player" src="blank.ogg"></audio>
 	<script>
-		// JavaScript object for later use
 		var player = new MediaElementPlayer('#player', {});
-		// ... more code ...
 		player.pause();
 
 		function playit()
