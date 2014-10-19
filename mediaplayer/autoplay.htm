@@ -1,0 +1,22 @@
+<head>
+	<code>
+		<script src="jquery.js"></script>
+		<script src="mediaelement-and-player.min.js"></script>
+		<link rel="stylesheet" href="mediaelementplayer.css" />
+	</code>
+</head>
+
+<body>
+	<audio id="player" src="blank.ogg"></audio>
+	<script>
+		// JavaScript object for later use
+		var player = new MediaElementPlayer('#player', {});
+		// ... more code ...
+		player.pause();
+		player.setSrc(window.location.hash.slice(1));
+		player.play();
+
+	</script>
+	<p>Powered by <a href="http://mediaelementjs.com">MediaElement</a></p>
+</body>
+

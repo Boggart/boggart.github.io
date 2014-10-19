@@ -1,0 +1,32 @@
+<head>
+	<code>
+		<script src="jquery.js"></script>
+		<script src="mediaelement-and-player.min.js"></script>
+		<link rel="stylesheet" href="mediaelementplayer.css" />
+	</code>
+</head>
+
+<body>
+	<p>Play any mp3, ogg, wmv from a link. Powered by <a href="http://mediaelementjs.com">MediaElement</a>.
+	<br>If the url doesn't tell the player the filesize, current time and duration will be NaN.</p>
+
+	<input id="playurl" type="text" size=100> <input type="button" value="Play url" onClick="playit()">
+	<audio id="player" src="blank.ogg"></audio>
+	<script>
+		// JavaScript object for later use
+		var player = new MediaElementPlayer('#player', {});
+		// ... more code ...
+		player.pause();
+
+		function playit()
+		{
+			var nameElement = document.getElementById("playurl");
+			var theurl = nameElement.value;
+
+			player.pause();
+			player = new MediaElementPlayer('#player', {});
+			player.setSrc(theurl);
+			player.play();
+		}
+	</script>
+
