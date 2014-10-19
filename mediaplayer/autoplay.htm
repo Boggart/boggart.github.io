@@ -15,10 +15,15 @@
 		player.pause();
 		player.setSrc(window.location.hash.slice(1));
 		player.play();
+		window.onhashchange = function() {
+			player.pause();
+			player.setSrc(window.location.hash.slice(1));
+			player.play();
+		}
+
 
 	</script>
-	<p>Refresh the page when you change the url after the #, duration and seek will only work on<br>
-	some webservers.</p>
+	<p>Refreshing after changing the url after # is no longer needed.</p>
 	<p>Powered by <a href="http://mediaelementjs.com">MediaElement</a></p>
 </body>
 
