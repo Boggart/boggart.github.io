@@ -8,7 +8,7 @@
 
 <body>
 	<p>Play any mp3, ogg, wmv from a link. Powered by <a href="http://mediaelementjs.com">MediaElement</a>.
-	<br>If the url doesn't tell the player the filesize, current time and duration will be NaN.</p>
+	<br>Seeking and duration will not work until the file completely loads with some webservers.</p>
 
 	<input id="playurl" type="text" size=100> <input type="button" value="Play url" onClick="playit()">
 	<audio id="player" src="blank.ogg"></audio>
