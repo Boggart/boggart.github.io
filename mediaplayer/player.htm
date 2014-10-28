@@ -7,13 +7,20 @@
 </head>
 
 <body>
-	<p>Play any mp3, ogg, wmv from a link. Powered by <a href="http://mediaelementjs.com">MediaElement</a>.
-	<br>Seeking and duration will not work until the file completely loads with some webservers.</p>
+	<p>Play any mp3, ogg, wmv from a link.
+	<br />Seeking and duration will not work until the file completely loads with some webservers.
+    <br />Powered by <a href="http://mediaelementjs.com">MediaElement</a>.</p>
 
 	<input id="playurl" type="text" size=100> <input type="button" value="Play url" onClick="playit()">
-	<audio id="player" src="blank.ogg"></audio>
+	<audio id="player">
+        <source type="audio/ogg" src="blank.ogg" />
+        <source type="audio/mp3" src="blank.mp3" />
+    </audio>
 	<script>
-		var player = new MediaElementPlayer('#player', {});
+		var player = new MediaElementPlayer('#player', {
+            enablePluginDebug: true,
+            plugins: ['flash','silverlight']
+        });
 		player.pause();
 
 		function playit()

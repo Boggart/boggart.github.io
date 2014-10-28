@@ -7,11 +7,16 @@
 </head>
 
 <body>
-	<audio id="player" src="blank.ogg"></audio>
+	<audio id="player">
+        <source type="audio/ogg" src="blank.ogg" />
+        <source type="audio/mp3" src="blank.mp3" />
+    </audio>
 	<script>
-		// JavaScript object for later use
-		var player = new MediaElementPlayer('#player', {});
-		// ... more code ...
+		var player = new MediaElementPlayer('#player', {
+            enablePluginDebug: true,
+            plugins: ['flash','silverlight']
+        });
+
 		player.pause();
 		player.setSrc(window.location.hash.slice(1));
 		player.play();
@@ -23,7 +28,7 @@
 
 
 	</script>
-	<p>Refreshing after changing the url following the # is no longer needed, seeking and duration will not work until the file completely loads with some webservers.
+	<p>Seeking and duration will not work until the file completely loads with some webservers.
 	<br>Powered by <a href="http://mediaelementjs.com">MediaElement</a>.</p>
 </body>
 
