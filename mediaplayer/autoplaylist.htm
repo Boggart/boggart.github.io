@@ -39,34 +39,27 @@
                     
                     var source= document.createElement('source');
                     url = playlistdata[i];
-                    var p = /^(?:https?:\/\/)?(?:www\.)?    (?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-                    if(url.match(p)) {
-                        source.type = "audio/youtube";
-                        console.log("Audio type of " + url + " is: " + source.type)
+                    var filename = url.substring(url.lastIndexOf('/')+1);
+                    console.log(filename);
+                    console.log(url);
+
+                    var ext = (filename.split(".")).pop();
+                    console.log("extension: " + ext);
+                    if(ext == "mp3") {
+                        source.type = "audio/mpeg";
+                        console.log("Audio type of " + filename + " is: " + source.type)
                     }
-                    else {
-                        //p = new RegExp('((?:[a-z][a-z\\.\\d_]+)\\.(?:[a-z\\d]{3}))(?![\\w\\.])',["i"]);
-                        var filename = url.substring(url.lastIndexOf('/')+1);
-                        console.log(filename);
-                        console.log(url);
-                        //filename = p.exec(filename);
-                        //console.log(filename);
-                        var ext = (filename.split(".")).pop();
-                        console.log("extension: " + ext);
-                        if(ext == "mp3") {
-                            source.type = "audio/mpeg";
-                            console.log("Audio type of " + filename + " is: " + source.type)
-                        }
-                        if(ext == "ogg") {
-                            source.type= "audio/ogg";
-                            console.log("Audio type of " + filename + " is: " + source.type)
-                        }
+                    if(ext == "ogg") {
+                        source.type= "audio/ogg";
+                        console.log("Audio type of " + filename + " is: " + source.type)
                     }
+                
                     source.src = url;
                     console.log("source.src: " + source.src)
                     audioelem = document.getElementById('player');
                     audioelem.appendChild(source);
                 }
+                
                 player = new MediaElementPlayer('#player', {
                     enablePluginDebug: true,
                     plugins: ['flash','silverlight'],
@@ -79,34 +72,27 @@
             } else {
                 console.log("Autoplayer: Single file mode");
                 var source= document.createElement('source');
-                var p = /^(?:https?:\/\/)?(?:www\.)?    (?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|watch\?.+&v=))((\w|-){11})(?:\S+)?$/;
-                if(url.match(p)) {
-                    source.type= 'audio/youtube';
-                    console.log("Audio type of " + url + " is: " + source.type)
+                var filename = url.substring(url.lastIndexOf('/')+1);
+                console.log(filename);
+                console.log(url);
+
+                var ext = filename.split(".").pop();
+                if(ext == "mp3") {
+                    source.type= "audio/mpeg";
+                    console.log("Audio type of " + filename + " is: " + source.type)
                 }
-                else {
-                    //p = new RegExp('((?:[a-z][a-z\\.\\d_]+)\\.(?:[a-z\\d]{3}))(?![\\w\\.])',["i"]);
-                    var filename = url.substring(url.lastIndexOf('/')+1);
-                    console.log(filename);
-                    console.log(url);
-                    //filename = p.exec(filename);
-                    var ext = filename.split(".").pop();
-                    if(ext == "mp3") {
-                        source.type= "audio/mpeg";
-                        console.log("Audio type of " + filename + " is: " + source.type)
-                    }
-                    if(ext == "ogg") {
-                        source.type= "audio/ogg";
-                        console.log("Audio type of " + filename + " is: " + source.type)
-                    }
+                if(ext == "ogg") {
+                    source.type= "audio/ogg";
+                    console.log("Audio type of " + filename + " is: " + source.type)
                 }
+                
                 source.src = url;
                 audioelem = document.getElementById('player');
                 audioelem.appendChild(source);
                     
                 player = new MediaElementPlayer('#player', {
                     enablePluginDebug: true,
-                    plugins: ['flash','silverlight']
+                    plugins: ['flash','silverlight','youtube']
                 });
 
 
@@ -133,12 +119,16 @@
         }
         
         initplayer()
-		window.onhashchange = document.location.reload(true)
+		window.onhashchange = function() {
+           window.location.reload(true);
+        }
 
 	</script>
     
-	<p><input id="playlisturls" type="text" size=200> <input type="button" value="Make Playlist" onClick="playlistit()">
+	<p><input id="playlisturls" type="text" size=100> <input type="button" value="Make Playlist" onClick="playlistit()">
     <br>Make a playlist by putting urls separted by commas in the above box. (No spaces between the urls.)
+    <br><br>Current playlist: <input id="currentplaylist" type="text" size=25 readonly = "readonly"> (Right-click, select all then copy to keep.)
+    <script>(document.getElementById("currentplaylist")).value = window.location.hash.slice(1);</script>
     <br>Autoplay may not work with some browsers, seeking and duration will not work until the file completely loads with some webservers.
 	<br>Powered by <a href="http://mediaelementjs.com">MediaElement</a>.</p>
 </body>
